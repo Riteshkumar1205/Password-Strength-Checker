@@ -21,19 +21,15 @@ Password Visibility: Toggle between showing and hiding your password for added c
 
 ## How to Use
 
-**Installation**
-   **1.Clone the Repository:**
-'''
-git clone https://github.com/your-username/password-strength-checker.git
-'''
 
-**Install Dependencies:**
-'''
+## 🌐 Repository 
+GitHub:[https://github.com/RiteshKumar1205/password-strength-checker](https://github.com/RiteshKumar1205/password-strength-checker)
 
-pip install -r requirements.txt
-'''
+clone using
+```bash
+git clone https://github.com/RiteshKumar/password-strength-checker.git
+cd password-strength-checker
 
-**Launch the Application:**
 '''
 
 python main.py
