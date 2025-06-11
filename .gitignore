@@ -192,3 +192,17 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+__pycache__/
+*.py[cod]
+*.pyo
+
+nltk_data/
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db
+
+env/
+venv/
