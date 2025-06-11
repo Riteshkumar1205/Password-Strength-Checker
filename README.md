@@ -30,22 +30,9 @@ clone using
 git clone https://github.com/RiteshKumar/password-strength-checker.git
 cd password-strength-checker
 
-'''
-
-python main.py
-'''
 
 
-## 2. Using the Tool
-Enter Your Password: Type your password in the provided field.
-
-View Feedback: Watch the strength meter and read the recommendations as you type.
-
-Toggle Visibility: Use the “Toggle Visibility” button to show or hide your password.
-
-Improve Your Password: Follow the suggestions to create a stronger, more secure password.
 
 
-Contribution
-We welcome contributions! If you have suggestions or improvements, please open an issue or submit a pull request.
+
 
