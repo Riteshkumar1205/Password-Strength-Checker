@@ -30,8 +30,25 @@ clone using
 git clone https://github.com/RiteshKumar/password-strength-checker.git
 cd password-strength-checker
 
+🛠️ Installation & Running
+🔹 Linux / macOS:
+bash
+
+python3 -m pip install -r requirements.txt
+python3 main.py
 
 
+🔹 Windows:
+cmd
+
+
+pip install -r requirements.txt
+python main.py
+
+
+💡 Optional: If you plan to use the dictionary check feature, run:
+
+python nltk_setup.py
 
 
 
