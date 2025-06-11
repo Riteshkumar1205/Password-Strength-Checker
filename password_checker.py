@@ -1,12 +1,18 @@
 import string
 import re
+import hashlib
+import requests
 from getpass import getpass  # For secure password input
 
 def load_banned_passwords(filename="common.txt"):
     """Load banned passwords from a file, case-insensitive."""
-    with open(filename, "r", encoding="utf-8", errors="ignore") as f:
-        banned = set(line.strip().lower() for line in f)
-    return banned
+    try:
+        with open(filename, "r", encoding="utf-8", errors="ignore") as f:
+            banned = set(line.strip().lower() for line in f)
+        return banned
+    except FileNotFoundError:
+        print(f"Warning: {filename} not found. Skipping banned password check.")
+        return set()
 
 def calculate_entropy(password):
     """Estimate password entropy in bits (simplified)."""
@@ -20,7 +26,7 @@ def calculate_entropy(password):
     return int(entropy)
 
 def check_password_strength(password):
-    """Analyze password strength and return detailed feedback."""
+    """Analyze password strength and return detailed metrics."""
     metrics = {
         'length': len(password),
         'upper': any(c.isupper() for c in password),
@@ -45,6 +51,23 @@ def check_password_strength(password):
     if metrics['entropy'] > 50: score += 1
     metrics['score'] = max(0, score)
     return metrics
+
+def is_password_breached(password):
+    """Check if a password has been exposed in a breach using the HIBP API."""
+    sha1_password = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
+    prefix = sha1_password[:5]
+    suffix = sha1_password[5:]
+    url = f"https://api.pwnedpasswords.com/range/{prefix}"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        for line in response.text.splitlines():
+            if line.split(':')[0] == suffix:
+                return True, int(line.split(':')[1])  # Return True and count of breaches
+        return False, 0
+    except Exception as e:
+        print(f"Error checking password: {e}")
+        return False, 0
 
 def get_feedback(analysis):
     """Generate detailed feedback based on analysis."""
@@ -84,6 +107,7 @@ def suggest_password():
     return ''.join(secrets.choice(chars) for _ in range(16))
 
 def main():
+    """Main function to run the password checker."""
     banned_passwords = load_banned_passwords()
     while True:
         try:
@@ -95,6 +119,12 @@ def main():
             if password.lower() in banned_passwords:
                 print("\n🔴 Security Alert: This password is too common!")
                 continue
+            # HIBP API check
+            is_breached, breach_count = is_password_breached(password)
+            if is_breached:
+                print(f"\n🔴 Security Alert: This password has been exposed in {breach_count} data breaches!")
+            else:
+                print("\n✅ This password has not been found in any known breaches.")
             # Analyze password
             analysis = check_password_strength(password)
             print("\nPassword Analysis:")
