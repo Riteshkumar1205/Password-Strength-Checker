@@ -1,7 +1,7 @@
 ## Password Strength Checker
 **Welcome to the Password Strength Checker, a secure and intuitive desktop application designed to help users evaluate and enhance the strength of their passwords. Built with Python and Tkinter, this tool provides immediate feedback on password security and offers actionable recommendations for improvement.**
 
-Key Features
+## Key Features
 Real-Time Analysis:
 Receive instant feedback on your password’s strength as you type.
 
@@ -34,45 +34,35 @@ GitHub:
 ## 🛠️ Installation & Running
 🔹 Linux / macOS
 Install Python 3 if not already installed.
+~~~
+git clone https://github.com/RiteshKumar1205/password-strength-checker.git
+cd password-strength-checker
 
-Clone the repository:
+python3 -m pip install -r requirements.txt
 
-
-**git clone https://github.com/RiteshKumar1205/password-strength-checker.git**
-## Change Directory
- **cd password-strength-checker**
- 
-## Install dependencies:
-**python3 -m pip install -r requirements.txt**
-
-## Run the application:
-**python3 main.py**
+python3 main.py
 
 Or, for the command-line version:
 
-bash
-**python password_checker.py**
+python password_checker.py
+~~~
 
 ## 🔹 Windows
 Install Python 3 if not already installed.
 
-Clone the repository:
-
 Open Command Prompt and run:
 
-**git clone https://github.com/RiteshKumar1205/password-strength-checker.git**
-## then
-**cd password-strength-checker**
+~~~
+git clone https://github.com/RiteshKumar1205/password-strength-checker.git
 
-## Install dependencies:
+cd password-strength-checker
 
-text
-**pip install -r requirements.txt**
-## Run the application:
+# Install dependencies:
 
+pip install -r requirements.txt
 
-**python main.py**
-
+python main.py
+~~~
 ## 💡 Optional: Dictionary Check Feature
 To enable dictionary-based password checks using NLTK:
 
